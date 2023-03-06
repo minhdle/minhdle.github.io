@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 
 export interface Product {
-  quantity: number;
   price: number;
   id: string;
   description: string;

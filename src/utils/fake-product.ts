@@ -7,7 +7,6 @@ export function createRandomProduct(): Product {
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     price: parseFloat(faker.commerce.price()),
-    quantity: 1
   };
 }
 
