@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
-import {Product} from "../components/product-list/ProductList";
+import { faker } from "@faker-js/faker";
+import { Product } from "../components/product-list/types";
 
 export function createRandomProduct(): Product {
   return {
@@ -7,6 +7,7 @@ export function createRandomProduct(): Product {
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     price: parseFloat(faker.commerce.price()),
+    imageUrl: faker.image.food(200, 200),
   };
 }
 
@@ -19,4 +20,3 @@ while (idx < itemsLength) {
 }
 
 export default products;
-
