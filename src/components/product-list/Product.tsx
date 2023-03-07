@@ -1,10 +1,9 @@
 import classnames from "classnames";
 import React from "react";
 
+import "./ProductList.scss";
 import { Quantity } from "./Quantity";
 import { Product as ProductType } from "./types";
-
-import "./ProductList.scss";
 
 type Props = ProductType & {
   quantity: number;
