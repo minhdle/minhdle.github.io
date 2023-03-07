@@ -1,33 +1,80 @@
-import CryptoJs from "crypto-js";
+import { v4 as uuidv4 } from "uuid";
+import CryptoJS from "crypto-js";
+import type { Product } from "../components/product-list/types";
 
-
-function generateGuid() {
-  let result, i, j;
-  result = '';
-  for(j=0; j<32; j++) {
-    if( j === 8 || j === 12 || j === 16 || j === 20)
-      result = result + '-';
-    i = Math.floor(Math.random()*16).toString(16).toUpperCase();
-    result = result + i;
-  }
-  return result;
+export interface ProductResp {
+  BoltID: string;
+  Name: string;
+  Description: string;
+  AvailabilityCount: number;
+  Prices: {
+    UnitPriceInCents: number;
+    Currency: string;
+    ListPriceInCents: number;
+  }[];
+  Multimedia: {
+    ImageURLs?: string[];
+  };
+  Identifiers: {
+    MerchantProductID: string;
+    SKU: string;
+  };
+  Properties?: {
+    Name: string;
+    NameID?: number;
+    Value: string;
+    ValueID?: number;
+  }[];
 }
 
+export type Catalog = Array<{
+  Current: ProductResp;
+  Parent: ProductResp;
+  Variants: ProductResp[];
+}>;
 
+export interface FetchProductsResp {
+  Catalog: Catalog;
+}
 
-export async function fetchProducts() {
-  const nonce = generateGuid().toLowerCase();
-  const baseString = ":" + nonce;
-  const stagingSecret = "cer6gnol0kor-DWIS"
+export async function fetchProducts(): Promise<Product[]> {
+  const nonce = uuidv4();
+  const baseString = `:${nonce}`;
+  const stagingSecret = "test_staging";
 
-  const signatureBytes = CryptoJs.HmacSHA512(baseString, stagingSecret);
-  const authSig = CryptoJs.enc.Base64.stringify(signatureBytes);
-  console.log(authSig);
+  const signatureBytes = CryptoJS.HmacSHA256(baseString, stagingSecret);
+  const authSig = CryptoJS.enc.Base64.stringify(signatureBytes);
   const headers = new Headers();
-  headers.append("X-Publisher-Key", "238a244f214c5635a99bf848dc510191");
+  headers.append("X-Publisher-Key", "b61b9342d84f5a7c9aeea9b09574d16c");
   headers.append("X-Nonce", nonce);
   headers.append("X-Authorization-Signature", authSig);
 
+  return fetch(
+    "https://api-staging.bolt.com/v1/products/catalog?merchant_division_id=LkyzotSFu0PH&limit=20",
+    { headers }
+  )
+    .then(async (res) => {
+      const json: FetchProductsResp = await res.json();
 
-  return fetch("https://api-sandbox.bolt.com/v1/products/catalog?merchant_division_id=LkYmU2HuLkws&limit=5", {headers})
+      return json.Catalog.map((item) => {
+        return item.Current.Name ? item.Current : {
+          ...item.Current,
+          Name: item.Parent.Name,
+          Description: item.Parent.Description,
+          Multimedia: item.Parent.Multimedia
+        };
+      });
+    })
+    .then((res) => {
+      const parsedProducts = res.map((product) => {
+        return {
+          price: product.Prices[0].ListPriceInCents / 100,
+          name: JSON.parse(product.Name).default,
+          id: product.BoltID,
+          description: JSON.parse(product.Description).default.slice(0, 30) + "...",
+          imageUrl: product.Multimedia.ImageURLs ? product.Multimedia.ImageURLs[0] : "",
+        } as Product;
+      });
+      return parsedProducts;
+    });
 }
