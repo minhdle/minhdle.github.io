@@ -38,7 +38,7 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
       )}
       onClick={(e) => handleQuantityChange(e, quantity + 1)}
     >
-      <img src={plus} />
+      <img src={plus} alt="increase quantity"/>
     </div>
   );
 
@@ -55,7 +55,7 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
         )}
         onClick={(e) => handleQuantityChange(e, quantity - 1)}
       >
-        <img src={quantity === 1 ? trash : minus} alt="" />
+        <img src={quantity === 1 ? trash : minus} alt="decrease quantity" />
       </div>
       <input
         id={`quantity-${id}`}

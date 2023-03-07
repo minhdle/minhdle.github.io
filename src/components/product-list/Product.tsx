@@ -29,7 +29,7 @@ export const Product: React.FC<Props> = (props) => {
         </div>
       </div>
       <div className="left-section">
-        <img className="product-image" src={props.imageUrl} />
+        <img className="product-image" src={props.imageUrl} alt={props.name}/>
       </div>
       <div className="bottom-right-corner">
         <Quantity
