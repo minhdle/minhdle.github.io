@@ -1,14 +1,17 @@
+$button-background: #11190c;
+$text-color: #e6ff00;
+
 .checkout-button {
 
   svg path {
-    fill: #e6ff00;
+    fill: $text-color;
   }
-  background-color: #11190c;
+  background-color: $button-background;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  color: #e6ff00;
+  color: $text-color;
   font-size: 16px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   font-weight: 600;
@@ -21,11 +24,11 @@
 
   &:hover {
     svg path {
-      fill: #11190c
+      fill: $button-background
     }
 
-    color: #11190c;
-    background-color: #e6ff00;
+    color: $button-background;
+    background-color: $text-color;
   }
 
 }
