@@ -5,6 +5,7 @@ import "./App.css";
 import type { Product } from "./components/product-list/types";
 import { CheckoutButton } from "./components/checkout-button/CheckoutButton";
 import { composeCheckoutUrl } from "./utils/compose-checkout-url";
+import { RingLoader } from "react-spinners";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -22,16 +23,25 @@ function App() {
   return (
     <div className="app">
       <h1 className="store-name">Little Italy Pizza</h1>
-      <ProductList
-        products={products}
-        onQuantityChanges={(config) => {
-          setCheckoutUrl(composeCheckoutUrl(config));
-          console.log(composeCheckoutUrl(config));
-        }}
-      ></ProductList>
-      <div className="checkout-button-wrapper">
-        <CheckoutButton onClick={onCheckout} />
-      </div>
+      {!products.length && (
+        <div className="loader">
+          <RingLoader color="blue" />
+        </div>
+      )}
+      {products.length && (
+        <>
+          <ProductList
+            products={products}
+            onQuantityChanges={(config) => {
+              setCheckoutUrl(composeCheckoutUrl(config));
+              console.log(composeCheckoutUrl(config));
+            }}
+          ></ProductList>
+          <div className="checkout-button-wrapper">
+            <CheckoutButton onClick={onCheckout} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
