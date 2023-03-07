@@ -5,3 +5,12 @@
 .app {
   padding: 12px;
 }
+
+.checkout-button-wrapper {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
