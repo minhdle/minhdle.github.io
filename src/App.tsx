@@ -21,7 +21,7 @@ function App() {
   };
   return (
     <div className="app">
-      <h1>Little Italy Pizza</h1>
+      <h1 className="store-name">Little Italy Pizza</h1>
       <ProductList
         products={products}
         onQuantityChanges={(config) => {

@@ -3,6 +3,7 @@ $secondary-color: rgb(19, 25, 13);
 
 .product-list {
   background: rgb(247, 247, 247);
+  margin: 16px;
 }
 
 .product {
@@ -13,7 +14,7 @@ $secondary-color: rgb(19, 25, 13);
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   max-height: 100px;
   position: relative;
   transition: border-color 0.3s;
@@ -29,7 +30,7 @@ $secondary-color: rgb(19, 25, 13);
 }
 
 .left-section {
-  margin-left: 12px;
+  margin-left: 16px;
 
 }
 
@@ -66,8 +67,8 @@ $secondary-color: rgb(19, 25, 13);
 }
 
 .quantity-button {
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: 30px;
   border-radius: 100%;
   border: none;
   background: white;
@@ -98,7 +99,7 @@ $secondary-color: rgb(19, 25, 13);
 .quantity-input {
   opacity: 1;
   width: 16px;
-  height: 22px;
+  height: 28px;
   text-align: center;
   border: none;
   font-weight: bold;

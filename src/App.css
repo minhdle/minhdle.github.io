@@ -2,10 +2,9 @@
   background: rgb(247, 247, 247);
  }
 
-.app {
-  padding: 12px;
-}
-
+ .store-name {
+   margin: 16px;
+ }
 .checkout-button-wrapper {
     position: fixed;
     bottom: 10px;
