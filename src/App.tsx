@@ -9,6 +9,7 @@ import { RingLoader } from "react-spinners";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [btnDisabled, setBtnDisabled] = useState(true);
   useEffect(() => {
     fetchProducts().then((prods) => {
       setProducts(prods);
@@ -33,13 +34,19 @@ function App() {
           <ProductList
             products={products}
             onQuantityChanges={(config) => {
+              if (Object.values(config).some((el) => el)) {
+                setBtnDisabled(false);
+              } else {
+                setBtnDisabled(true);
+              }
               setCheckoutUrl(composeCheckoutUrl(config));
-              console.log(composeCheckoutUrl(config));
             }}
           ></ProductList>
-          <div className="checkout-button-wrapper">
-            <CheckoutButton onClick={onCheckout} />
-          </div>
+          {!btnDisabled && (
+            <div className="checkout-button-wrapper">
+              <CheckoutButton onClick={onCheckout} disabled={btnDisabled} />
+            </div>
+          )}
         </>
       ) : null}
     </div>
