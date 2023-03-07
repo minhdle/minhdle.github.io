@@ -26,7 +26,6 @@ function App() {
         products={products}
         onQuantityChanges={(config) => {
           setCheckoutUrl(composeCheckoutUrl(config));
-          console.log(composeCheckoutUrl(config));
         }}
       ></ProductList>
       <div className="checkout-button-wrapper">

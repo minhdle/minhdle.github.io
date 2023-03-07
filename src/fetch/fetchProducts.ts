@@ -64,7 +64,7 @@ export async function fetchProducts(): Promise<Product[]> {
     })
     .then((res) => {
       const seenSku: { [sku: string]: true } = {};
-      const result =  res.reduce((acc: Product[], product) => {
+      return  res.reduce((acc: Product[], product) => {
         if (seenSku[product.Identifiers.SKU]) {
           return acc;
         }
@@ -83,10 +83,6 @@ export async function fetchProducts(): Promise<Product[]> {
           } as Product,
         ];
       }, []);
-
-      console.log(result);
-
-      return result;
     });
 }
 
