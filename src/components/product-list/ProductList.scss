@@ -71,9 +71,7 @@ $secondary-color: rgb(19, 25, 13);
   width: 30px;
   border-radius: 100%;
   border: none;
-  background: white;
   line-height: 16px;
-  background-color: white;
   box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   display: flex;
   align-items: center;
@@ -123,4 +121,6 @@ $secondary-color: rgb(19, 25, 13);
   bottom: 8px;
   display: flex;
   align-items: center;
+  background: white;
+  border-radius: 30px;
 }
