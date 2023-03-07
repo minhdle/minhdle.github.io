@@ -1,9 +1,10 @@
 import classnames from "classnames";
 import React from "react";
 
-import "./ProductList.scss";
 import { Quantity } from "./Quantity";
 import { Product as ProductType } from "./types";
+
+import "./ProductList.scss";
 
 type Props = ProductType & {
   quantity: number;
@@ -15,6 +16,7 @@ export const Product: React.FC<Props> = (props) => {
 
   return (
     <div
+      onClick={() => (quantity === 0 ? onQuantityChange(id, 1) : null)}
       className={classnames(
         "product",
         quantity >= 1 && "product--with-quantity"

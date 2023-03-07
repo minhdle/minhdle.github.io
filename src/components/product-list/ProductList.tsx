@@ -16,7 +16,7 @@ const ProductList = ({ products }: { products: ProductType[] }) => {
 
   return (
     <div className="product-list">
-      {products.map((product, i) => (
+      {products.map((product) => (
         <Product
           {...product}
           key={product.id}
