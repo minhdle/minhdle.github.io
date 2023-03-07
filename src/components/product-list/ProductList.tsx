@@ -4,14 +4,28 @@ import type { Product as ProductType } from "./types";
 
 import "./ProductList.scss";
 
-const ProductList = ({ products }: { products: ProductType[] }) => {
-  const [quantities, setQuantities] = useState<{ [id: string]: number }>({});
+export interface QuantitiesConfig {
+  [id: string]: number;
+}
+
+const ProductList = ({
+  products,
+  onQuantityChanges,
+}: {
+  products: ProductType[];
+  onQuantityChanges: (config: QuantitiesConfig) => void;
+}) => {
+  const [quantities, setQuantities] = useState<QuantitiesConfig>({});
 
   const handleQuantityChange = (productId: string, quantity: number) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [productId]: quantity,
-    }));
+    setQuantities((prevQuantities) => {
+      const updated = {
+        ...prevQuantities,
+        [productId]: quantity,
+      };
+      onQuantityChanges(updated);
+      return updated;
+    });
   };
 
   return (
