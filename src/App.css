@@ -7,7 +7,7 @@
  }
 .checkout-button-wrapper {
     position: fixed;
-    bottom: 10px;
+    bottom: 16px;
     width: 100%;
     display: flex;
     justify-content: center;
