@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import CryptoJS from "crypto-js";
+import { Product } from "../components/product-list/ProductList";
 
-export interface Product {
+export interface ProductResp {
   BoltID: string;
   Name: string;
   Description: string;
@@ -23,13 +24,13 @@ export interface Product {
 }
 
 export type Catalog = Array<{
-  Current: Product;
-  Parent: Product;
-  Variants: Product;
+  Current: ProductResp;
+  Parent: ProductResp;
+  Variants: ProductResp[];
 }>;
 
 export interface FetchProductsResp {
-  Catalog: Catalog
+  Catalog: Catalog;
 }
 
 export async function fetchProducts(): Promise<Product[]> {
@@ -48,9 +49,23 @@ export async function fetchProducts(): Promise<Product[]> {
   return fetch(
     "https://api-sandbox.bolt.com/v1/products/catalog?merchant_division_id=LkYmU2HuLkws&limit=5",
     { headers }
-  ).then(async (res) => {
-    const json: FetchProductsResp = await res.json();
+  )
+    .then(async (res) => {
+      const json: FetchProductsResp = await res.json();
 
-    return json.Catalog.map(item => item.Current);
-  });
+      return json.Catalog.map((item) => {
+        return item.Current.Name ? item.Current : item.Parent;
+      });
+    })
+    .then((res) => {
+      const parsedProducts = res.map((product) => {
+        return {
+          price: product.Prices[0].UnitPriceInCents,
+          name: JSON.parse(product.Name).default,
+          id: product.BoltID,
+          description: "",
+        } as Product;
+      });
+      return parsedProducts;
+    });
 }
