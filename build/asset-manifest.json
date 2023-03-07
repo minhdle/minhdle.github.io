@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "https://minhdle.github.io/minhdle.github.io/static/css/main.206e0268.css",
+    "main.js": "https://minhdle.github.io/minhdle.github.io/static/js/main.f735c90a.js",
+    "static/js/787.8f958b0d.chunk.js": "https://minhdle.github.io/minhdle.github.io/static/js/787.8f958b0d.chunk.js",
+    "static/media/trash.svg": "https://minhdle.github.io/minhdle.github.io/static/media/trash.be759720ea1591bab51714531ae16e6d.svg",
+    "index.html": "https://minhdle.github.io/minhdle.github.io/index.html",
+    "static/media/plus.svg": "https://minhdle.github.io/minhdle.github.io/static/media/plus.9c7b26223318951f09b7a66daf171cae.svg",
+    "static/media/minus.svg": "https://minhdle.github.io/minhdle.github.io/static/media/minus.4e154716b84c1ef7b2294a48f2ac4984.svg",
+    "static/media/bolt_logo_lightning.svg": "https://minhdle.github.io/minhdle.github.io/static/media/bolt_logo_lightning.030aea78b9c98a4160148398642388af.svg",
+    "main.206e0268.css.map": "https://minhdle.github.io/minhdle.github.io/static/css/main.206e0268.css.map",
+    "main.f735c90a.js.map": "https://minhdle.github.io/minhdle.github.io/static/js/main.f735c90a.js.map",
+    "787.8f958b0d.chunk.js.map": "https://minhdle.github.io/minhdle.github.io/static/js/787.8f958b0d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.206e0268.css",
+    "static/js/main.f735c90a.js"
+  ]
+}
