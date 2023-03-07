@@ -28,7 +28,7 @@ function App() {
           <RingLoader color="blue" />
         </div>
       )}
-      {products.length && (
+      {products.length ? (
         <>
           <ProductList
             products={products}
@@ -41,7 +41,7 @@ function App() {
             <CheckoutButton onClick={onCheckout} />
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 }

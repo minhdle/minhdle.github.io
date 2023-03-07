@@ -38,7 +38,7 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
       )}
       onClick={(e) => handleQuantityChange(e, quantity + 1)}
     >
-      <img src={plus} alt="increase quantity"/>
+      <img src={plus} alt="increase quantity" />
     </div>
   );
 
@@ -46,16 +46,17 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
     onQuantityChange(value);
   };
 
-  return quantity !== 0 ? (
+  return (
     <>
       <div
         className={classnames(
           "quantity-button",
-          isInCart && "quantity-button--withQuantityMinus"
+          isInCart && "quantity-button--withQuantityMinus",
+          quantity === 0 && "hidden"
         )}
         onClick={(e) => handleQuantityChange(e, quantity - 1)}
       >
-        <img src={quantity === 1 ? trash : minus} alt="decrease quantity" />
+        <img src={quantity <= 1 ? trash : minus} alt="decrease quantity" />
       </div>
       <input
         id={`quantity-${id}`}
@@ -63,7 +64,7 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
         min="1"
         value={value === 0 ? 1 : value}
         ref={quantityInputRef}
-        className="quantity-input"
+        className={classnames("quantity-input", quantity === 0 && "hidden")}
         onChange={(e) => setValue(Number(e.target.value))}
         onBlur={() => updateQuantity()}
         onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -74,9 +75,15 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
           }
         }}
       />
-      {quantityPlusButton}
+      <div
+        className={classnames(
+          "quantity-button",
+          isInCart && "quantity-button--withQuantityPlus"
+        )}
+        onClick={(e) => handleQuantityChange(e, quantity + 1)}
+      >
+        <img src={plus} />
+      </div>
     </>
-  ) : (
-    quantityPlusButton
   );
 };

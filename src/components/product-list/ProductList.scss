@@ -72,7 +72,6 @@ $secondary-color: rgb(19, 25, 13);
   border-radius: 100%;
   border: none;
   line-height: 16px;
-  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,11 +96,12 @@ $secondary-color: rgb(19, 25, 13);
 .quantity-input {
   opacity: 1;
   width: 16px;
-  height: 28px;
+  height: 18.5px;
   text-align: center;
   border: none;
   font-weight: bold;
   z-index: 2;
+  border-radius: 0;
   &:focus {
     border: none;
   }
@@ -123,4 +123,9 @@ $secondary-color: rgb(19, 25, 13);
   align-items: center;
   background: white;
   border-radius: 30px;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.hidden {
+  display: none;
 }
