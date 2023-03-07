@@ -1,0 +1,18 @@
+.checkout-button {
+  background-color: rgba(0, 108, 255, 1);
+
+  svg {
+    fill: white;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: white;
+  font-size: 16px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  border: none;
+  min-width: 200px;
+  padding: 16px;
+  border-radius: 4px;
+}
