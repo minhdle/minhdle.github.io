@@ -1,10 +1,10 @@
-import boltLogo from "./bolt_logo_lightning.svg";
+import { ReactComponent as BoltLogo } from "./bolt_logo_lightning.svg";
 import "./checkoutButton.scss"
 
 export const CheckoutButton = () => {
   return (
     <button className="checkout-button">
-      <img src={boltLogo} alt="Checkout"/>
+      <BoltLogo/>
       Checkout
     </button>
   )
