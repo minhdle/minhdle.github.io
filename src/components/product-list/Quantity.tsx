@@ -22,13 +22,21 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
     setValue(quantity);
   }, [quantity]);
 
+  const handleQuantityChange = (
+    e: React.MouseEvent<HTMLDivElement>,
+    quantity: number
+  ) => {
+    e.stopPropagation();
+    onQuantityChange(quantity);
+  };
+
   const quantityPlusButton = (
     <div
       className={classnames(
         "quantity-button",
         isInCart && "quantity-button--withQuantityPlus"
       )}
-      onClick={() => onQuantityChange(quantity + 1)}
+      onClick={(e) => handleQuantityChange(e, quantity + 1)}
     >
       <img src={plus} />
     </div>
@@ -45,9 +53,9 @@ export const Quantity: React.FC<AddToCartInputProps> = (props) => {
           "quantity-button",
           isInCart && "quantity-button--withQuantityMinus"
         )}
-        onClick={() => onQuantityChange(quantity - 1)}
+        onClick={(e) => handleQuantityChange(e, quantity - 1)}
       >
-        <img src={quantity === 1 ? trash : minus} />
+        <img src={quantity === 1 ? trash : minus} alt="" />
       </div>
       <input
         id={`quantity-${id}`}

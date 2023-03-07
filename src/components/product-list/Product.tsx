@@ -15,7 +15,7 @@ export const Product: React.FC<Props> = (props) => {
 
   return (
     <div
-      onClick={() => (quantity === 0 ? onQuantityChange(id, 1) : null)}
+      onClick={() => onQuantityChange(id, quantity === 0 ? 1 : 0)}
       className={classnames(
         "product",
         quantity >= 1 && "product--with-quantity"
